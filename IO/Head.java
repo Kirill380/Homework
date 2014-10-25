@@ -6,18 +6,23 @@ class Head {
 		String s;
 		BufferedReader br = null;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(args[0]));
-			
-			while((s = br.readLine()) != null || i != 10)
+			br = new BufferedReader(new FileReader(args[0]));
+			while((s = br.readLine()) != null && i != 10) {
 				System.out.println(s);
+				i++;
+			}
+				
 		}
 
-		catch(IOExeception e) {
+		catch(IOException e) {
 			System.out.println(e.getMessage());
 		}
 
 		finally {
-			br.close();
+			if(br != null) 
+				try { br.close(); }	
+			catch(IOException e) { ; }
+			
 		}
 	}
 
